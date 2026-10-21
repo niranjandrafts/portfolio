@@ -84,7 +84,7 @@
     <section id="about" class="relative pt-28 pb-16 md:pt-36 md:pb-24 border-b border-cinema-border/50 bg-gradient-to-b from-cinema-card/30 via-cinema-base to-cinema-base">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div class="bg-cinema-card/80 border border-cinema-border rounded-3xl p-6 sm:p-10 shadow-2xl backdrop-blur-sm">
+            <div class="bg-cinema-card/80 border border-cinema-border rounded-3xl p-4 sm:p-10 shadow-2xl backdrop-blur-sm">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
                     <div class="lg:col-span-5 relative">
@@ -96,9 +96,9 @@
                                 Filmmaker
                             </div>
 
-                            <div class="absolute bottom-4 inset-x-4 p-4 bg-black/85 backdrop-blur-md border border-cinema-border/80 rounded-xl">
-                                <div class="text-[11px] uppercase tracking-wider text-cinema-textMuted font-mono mb-1">Core Specializations</div>
-                                <p class="text-xs font-medium text-white flex flex-wrap gap-1.5">
+                            <div class="absolute bottom-2 inset-x-2 p-2 sm:bottom-4 sm:inset-x-4 sm:p-4 bg-black/85 backdrop-blur-md border border-cinema-border/80 rounded-lg sm:rounded-xl">
+                                <div class="hidden sm:block text-[11px] uppercase tracking-wider text-cinema-textMuted font-mono mb-1">Core Specializations</div>
+                                <p class="text-[10px] leading-tight sm:text-xs font-medium text-white flex flex-wrap gap-x-1 gap-y-0.5 sm:gap-1.5">
                                     <span class="text-cinema-accent">Direction</span> •
                                     <span class="text-white">Cinematography</span> •
                                     <span class="text-cinema-accent">Color Grading</span> •
@@ -160,7 +160,7 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-8 text-center text-xs">
+            <!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-8 text-center text-xs">
                 <div class="p-3 bg-cinema-card border border-cinema-border rounded-xl">
                     <i data-lucide="compass" class="w-5 h-5 mx-auto mb-1 text-cinema-accent"></i>
                     <span class="block font-semibold text-white">Direction</span>
@@ -186,7 +186,7 @@
                     <span class="block font-semibold text-white">Photography</span>
                     <span class="text-[10px] text-cinema-textMuted">Stills & portrait</span>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </section>
@@ -249,13 +249,13 @@
                 <div id="compare-slider" class="image-compare-container rounded-xl aspect-video w-full cursor-ew-resize bg-black">
 
                     <img id="compare-before-img" src="img/Colorgrade/E2.jpg" alt="Flat LOG footage before color grading" class="w-full h-full object-contain">
-                    <div id="before-label" class="absolute top-4 right-4 bg-black/70 backdrop-blur-md px-3 py-1 rounded text-xs font-mono z-10 border border-white/10" style="color: white;">
+                    <div id="before-label" class="absolute top-1.5 right-1.5 sm:top-4 sm:right-4 bg-black/70 backdrop-blur-md px-1.5 py-0.5 sm:px-3 sm:py-1 rounded text-[9px] sm:text-xs font-mono z-10 border border-white/10" style="color: white;">
                         S-Log3 
                     </div>
 
                     <div class="image-compare-after" id="compare-after-layer">
                         <img id="compare-after-img" src="img/Colorgrade/E1.jpg" alt="Final color graded footage" class="w-full h-full object-contain">
-                        <div class="absolute top-4 left-4 bg-cinema-accent/90 backdrop-blur-md px-3 py-1 rounded text-xs text-black font-semibold font-mono z-10">
+                        <div class="absolute top-1.5 left-1.5 sm:top-4 sm:left-4 bg-cinema-accent/90 backdrop-blur-md px-1.5 py-0.5 sm:px-3 sm:py-1 rounded text-[9px] sm:text-xs text-black font-semibold font-mono z-10">
                             Film Look (Graded)
                         </div>
                     </div>
@@ -333,23 +333,23 @@
     </footer>
 
     <!-- PROJECT MODAL -->
-    <div id="project-modal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-lg overflow-y-auto p-4 sm:p-6 md:p-10 transition-opacity duration-300">
-        <div class="max-w-5xl mx-auto bg-cinema-card border border-cinema-border rounded-2xl overflow-hidden shadow-2xl relative my-8">
+    <div id="project-modal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-lg overflow-y-auto p-2 sm:p-6 md:p-10 transition-opacity duration-300">
+        <div class="max-w-5xl mx-auto bg-cinema-card border border-cinema-border rounded-2xl overflow-hidden shadow-2xl relative my-2 sm:my-8">
             <button id="modal-close-btn" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/70 border border-cinema-border text-gray-300 hover:text-black hover:bg-cinema-accent flex items-center justify-center transition-all">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
 
             <div id="modal-player-container" class="w-full aspect-video bg-black relative flex items-center justify-center"></div>
 
-            <div class="p-6 sm:p-8 space-y-6">
-                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-cinema-border pb-4">
+            <div class="p-4 sm:p-8 space-y-4 sm:space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-2 sm:gap-4 border-b border-cinema-border pb-3 sm:pb-4">
                     <div>
-                        <div id="modal-tags" class="flex flex-wrap gap-2 mb-2"></div>
-                        <h2 id="modal-title" class="text-2xl sm:text-3xl font-bold text-white font-display"></h2>
+                        <div id="modal-tags" class="flex flex-wrap gap-1.5 sm:gap-2 mb-1.5 sm:mb-2"></div>
+                        <h2 id="modal-title" class="text-lg sm:text-3xl font-bold text-white font-display leading-tight"></h2>
                     </div>
-                    <div class="text-right">
-                        <span id="modal-year" class="text-xs text-cinema-textMuted block font-mono"></span>
-                        <span id="modal-runtime" class="text-xs text-cinema-accent font-semibold"></span>
+                    <div class="flex gap-3 sm:block sm:text-right">
+                        <span id="modal-year" class="text-[10px] sm:text-xs text-cinema-textMuted sm:block font-mono"></span>
+                        <span id="modal-runtime" class="text-[10px] sm:text-xs text-cinema-accent font-semibold"></span>
                     </div>
                 </div>
 
@@ -358,20 +358,20 @@
                     <p id="modal-description" class="text-sm text-gray-300 leading-relaxed"></p>
                 </div>
 
-                <div id="modal-specs-section" class="bg-cinema-base/80 border border-cinema-border rounded-xl p-4">
-                    <h4 class="text-xs uppercase tracking-wider text-cinema-accent font-mono mb-3">Technical Film Specs</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
-                        <div>
-                            <span class="text-cinema-textMuted block">Camera System</span>
-                            <span id="spec-camera" class="font-medium text-white"></span>
+                <div id="modal-specs-section" class="bg-cinema-base/80 border border-cinema-border rounded-xl p-3 sm:p-4">
+                    <h4 class="text-[10px] sm:text-xs uppercase tracking-wider text-cinema-accent font-mono mb-2 sm:mb-3">Technical Film Specs</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-4 text-[11px] sm:text-xs">
+                        <div class="flex justify-between gap-3 md:block">
+                            <span class="text-cinema-textMuted shrink-0 md:block">Camera System</span>
+                            <span id="spec-camera" class="font-medium text-white text-right md:text-left"></span>
                         </div>
-                        <div>
-                            <span class="text-cinema-textMuted block">Lenses</span>
-                            <span id="spec-lens" class="font-medium text-white"></span>
+                        <div class="flex justify-between gap-3 md:block">
+                            <span class="text-cinema-textMuted shrink-0 md:block">Lenses</span>
+                            <span id="spec-lens" class="font-medium text-white text-right md:text-left"></span>
                         </div>
-                        <div>
-                            <span class="text-cinema-textMuted block">Aspect Ratio</span>
-                            <span id="spec-aspect" class="font-medium text-white"></span>
+                        <div class="flex justify-between gap-3 md:block">
+                            <span class="text-cinema-textMuted shrink-0 md:block">Aspect Ratio</span>
+                            <span id="spec-aspect" class="font-medium text-white text-right md:text-left"></span>
                         </div>
                     </div>
                 </div>
@@ -516,7 +516,7 @@
                 category: ["Reels"],
                 thumbnail: "img/Reel/R2.jpg",
                 // FIX: must be an /embed/ URL, not youtu.be or watch?v=
-                videoUrl: "https://www.instagram.com/reel/DaDJZfQpn89/embed",
+                videoUrl: "https://player.vimeo.com/video/1237848956",
                 
                 runtime: "39 secs",
                 year: "2026",
@@ -852,6 +852,12 @@
         function openModal(project) {
             const playerContainer = document.getElementById('modal-player-container');
 
+            // Photo series get a tall viewing area on phones so the pictures stay large
+            const isPhotoSeries = project.photos && project.photos.length;
+            playerContainer.className = isPhotoSeries
+                ? 'w-full h-[65vh] md:h-auto aspect-video bg-black relative flex items-center justify-center'
+                : 'w-full aspect-video bg-black relative flex items-center justify-center';
+
             carouselCount = 0;
 
             if (project.photos && project.photos.length) {
@@ -879,7 +885,7 @@
             document.getElementById('spec-aspect').textContent = project.specs.aspect;
 
             document.getElementById('modal-tags').innerHTML = project.category.map(c =>
-                `<span class="px-2.5 py-1 text-xs font-semibold rounded bg-cinema-accent/20 text-cinema-accent border border-cinema-accent/30">${c}</span>`
+                `<span class="px-2 py-0.5 text-[10px] sm:px-2.5 sm:py-1 sm:text-xs font-semibold rounded bg-cinema-accent/20 text-cinema-accent border border-cinema-accent/30">${c}</span>`
             ).join('');
 
             const synopsisSection = document.getElementById('modal-synopsis-section');
