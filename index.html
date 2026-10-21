@@ -333,8 +333,8 @@
     </footer>
 
     <!-- PROJECT MODAL -->
-    <div id="project-modal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-lg overflow-y-auto p-2 sm:p-6 md:p-10 transition-opacity duration-300">
-        <div class="max-w-5xl mx-auto bg-cinema-card border border-cinema-border rounded-2xl overflow-hidden shadow-2xl relative my-2 sm:my-8">
+    <div id="project-modal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-lg overflow-y-auto p-0 sm:p-6 md:p-10 transition-opacity duration-300">
+        <div class="max-w-5xl mx-auto bg-cinema-card border border-cinema-border rounded-none sm:rounded-2xl overflow-hidden shadow-2xl relative my-0 sm:my-8 min-h-full sm:min-h-0">
             <button id="modal-close-btn" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/70 border border-cinema-border text-gray-300 hover:text-black hover:bg-cinema-accent flex items-center justify-center transition-all">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
@@ -378,7 +378,7 @@
 
                 <div id="modal-stills-section">
                     <h4 class="text-xs uppercase tracking-wider text-cinema-textMuted font-mono mb-3">Production Stills</h4>
-                    <div id="modal-stills" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+                    <div id="modal-stills" class="grid grid-cols-3 gap-2 max-w-md"></div>
                 </div>
             </div>
         </div>
@@ -854,9 +854,13 @@
 
             // Photo series get a tall viewing area on phones so the pictures stay large
             const isPhotoSeries = project.photos && project.photos.length;
+            const isReel = project.category.includes('Reels');
+            const base = 'w-full bg-black relative flex items-center justify-center';
             playerContainer.className = isPhotoSeries
-                ? 'w-full h-[65vh] md:h-auto aspect-video bg-black relative flex items-center justify-center'
-                : 'w-full aspect-video bg-black relative flex items-center justify-center';
+                ? base + ' h-[65vh] md:h-auto aspect-video'
+                : isReel
+                    ? base + ' h-[78vh] md:h-auto aspect-video'      // tall, vertical-friendly on phones
+                    : base + ' h-[42vh] md:h-auto aspect-video';     // video centred in a larger stage on phones
 
             carouselCount = 0;
 
@@ -867,7 +871,7 @@
                 // FIX: use & if the URL already contains a ?
                 const sep = project.videoUrl.includes('?') ? '&' : '?';
                 playerContainer.innerHTML = `
-                    <iframe src="${project.videoUrl}${sep}autoplay=1" title="${project.title}" class="w-full h-full border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="${project.videoUrl}${sep}autoplay=1" title="${project.title}" class="w-full border-0 ${isReel ? 'h-full' : 'aspect-video max-h-full md:aspect-auto md:h-full'}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 `;
             } else {
                 playerContainer.innerHTML = `
@@ -894,7 +898,6 @@
             const stillsContainer = document.getElementById('modal-stills');
 
             const isPhotography = project.category.includes('Photography');
-            const isReel = project.category.includes('Reels');
 
             // Photography: hide Synopsis. Reels: hide Synopsis, Specs and Stills.
             synopsisSection.style.display = (isPhotography || isReel) ? 'none' : 'block';
