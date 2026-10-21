@@ -200,11 +200,11 @@
             </div>
 
             <div class="flex flex-wrap gap-2 bg-cinema-card p-1.5 rounded-xl border border-cinema-border">
+                <button class="filter-btn active px-4 py-2 rounded-lg text-xs font-semibold transition-all bg-cinema-accent text-black" data-filter="all">All Works</button>
                 <button class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold text-cinema-textMuted hover:text-white transition-all" data-filter="Direction">Direction</button>
                 <button class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold text-cinema-textMuted hover:text-white transition-all" data-filter="Cinematography">Cinematography</button>
                 <button class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold text-cinema-textMuted hover:text-white transition-all" data-filter="Reels">Reels</button>
                 <button class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold text-cinema-textMuted hover:text-white transition-all" data-filter="Photography">Photography</button>
-                <button class="filter-btn active px-4 py-2 rounded-lg text-xs font-semibold transition-all bg-cinema-accent text-black" data-filter="all">All Works</button>
             </div>
         </div>
 
@@ -289,20 +289,22 @@
                 Available for directing, cinematography gigs, short film editing, and color grading projects.
             </p>
 
-            <form id="contact-form" class="space-y-4 text-left max-w-xl mx-auto" onsubmit="event.preventDefault(); showToast();">
+            <form id="contact-form" class="space-y-4 text-left max-w-xl mx-auto">
+                <!-- Spam trap: real visitors never see or fill this -->
+                <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-medium text-cinema-textMuted mb-1">Your Name</label>
-                        <input type="text" required class="w-full bg-cinema-card border border-cinema-border rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-cinema-accent transition-colors" placeholder="Jane Doe">
+                        <input type="text" name="name" required class="w-full bg-cinema-card border border-cinema-border rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-cinema-accent transition-colors" placeholder="Jane Doe">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-cinema-textMuted mb-1">Your Email</label>
-                        <input type="email" required class="w-full bg-cinema-card border border-cinema-border rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-cinema-accent transition-colors" placeholder="jane@gmail.com">
+                        <input type="email" name="email" required class="w-full bg-cinema-card border border-cinema-border rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-cinema-accent transition-colors" placeholder="jane@gmail.com">
                     </div>
                 </div>
                 <div>
                     <label class="block text-xs font-medium text-cinema-textMuted mb-1">Inquiry Type</label>
-                    <select class="w-full bg-cinema-card border border-cinema-border rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-cinema-accent transition-colors">
+                    <select name="inquiry_type" class="w-full bg-cinema-card border border-cinema-border rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-cinema-accent transition-colors">
                         <option>Full Short Film Collaboration</option>
                         <option>Color Grading Project</option>
                         <option>Cinematography / DP Gigs</option>
@@ -312,18 +314,18 @@
                 </div>
                 <div>
                     <label class="block text-xs font-medium text-cinema-textMuted mb-1">Project Details</label>
-                    <textarea rows="4" required class="w-full bg-cinema-card border border-cinema-border rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-cinema-accent transition-colors" placeholder="Tell me about the project timeline, logline, or requirements..."></textarea>
+                    <textarea name="message" rows="4" required class="w-full bg-cinema-card border border-cinema-border rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-cinema-accent transition-colors" placeholder="Tell me about the project timeline, logline, or requirements..."></textarea>
                 </div>
-                <button type="submit" class="w-full py-3.5 bg-cinema-accent text-black font-semibold rounded-lg hover:bg-cinema-accentHover transition-colors shadow-lg shadow-cinema-accent/20 flex items-center justify-center gap-2">
+                <button type="submit" id="contact-submit" class="w-full py-3.5 bg-cinema-accent text-black font-semibold rounded-lg hover:bg-cinema-accentHover transition-colors shadow-lg shadow-cinema-accent/20 flex items-center justify-center gap-2">
                     <i data-lucide="send" class="w-4 h-4"></i> Send Project Message
                 </button>
             </form>
 
             <div class="flex justify-center gap-6 mt-12 pt-8 border-t border-cinema-border/40 text-cinema-textMuted">
-                <a href="#" class="hover:text-cinema-accent transition-colors flex items-center gap-2 text-xs"><i data-lucide="video" class="w-4 h-4"></i> Vimeo</a>
-                <a href="#" class="hover:text-cinema-accent transition-colors flex items-center gap-2 text-xs"><i data-lucide="instagram" class="w-4 h-4"></i> Instagram</a>
-                <a href="#" class="hover:text-cinema-accent transition-colors flex items-center gap-2 text-xs"><i data-lucide="linkedin" class="w-4 h-4"></i> edIn</a>
-                <a href="#" class="hover:text-cinema-accent transition-colors flex items-center gap-2 text-xs"><i data-lucide="film" class="w-4 h-4"></i> IMDb Profile</a>
+                <!-- TODO: replace YOUR_VIMEO_USERNAME with your Vimeo profile name -->
+                <a href="https://vimeo.com/YOUR_VIMEO_USERNAME" target="_blank" rel="noopener noreferrer" class="hover:text-cinema-accent transition-colors flex items-center gap-2 text-xs"><i data-lucide="video" class="w-4 h-4"></i> Vimeo</a>
+                <a href="https://www.instagram.com/niranjandrafts/" target="_blank" rel="noopener noreferrer" class="hover:text-cinema-accent transition-colors flex items-center gap-2 text-xs"><i data-lucide="instagram" class="w-4 h-4"></i> Instagram</a>
+                <a href="https://www.youtube.com/@nxjnnnnnn" target="_blank" rel="noopener noreferrer" class="hover:text-cinema-accent transition-colors flex items-center gap-2 text-xs"><i data-lucide="youtube" class="w-4 h-4"></i> YouTube</a>
             </div>
         </div>
     </section>
@@ -387,7 +389,7 @@
     <!-- TOAST -->
     <div id="toast" class="fixed bottom-6 right-6 z-50 hidden bg-cinema-accent text-black font-semibold px-5 py-3 rounded-xl shadow-2xl items-center gap-3">
         <i data-lucide="check-circle" class="w-5 h-5"></i>
-        <span>Thank you! Your project inquiry has been logged.</span>
+        <span id="toast-text">Thank you! Your project inquiry has been sent.</span>
     </div>
 
     <script>
@@ -987,15 +989,69 @@
             link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
 
-        function showToast() {
+        function showToast(message, isError = false) {
             const toast = document.getElementById('toast');
+            document.getElementById('toast-text').textContent = message;
+            toast.classList.toggle('bg-cinema-accent', !isError);
+            toast.classList.toggle('bg-red-500', isError);
+            toast.classList.toggle('text-black', !isError);
+            toast.classList.toggle('text-white', isError);
             toast.classList.remove('hidden');
             toast.classList.add('flex');
-            setTimeout(() => {
+            clearTimeout(showToast.timer);
+            showToast.timer = setTimeout(() => {
                 toast.classList.add('hidden');
                 toast.classList.remove('flex');
-            }, 4000);
+            }, 5000);
         }
+
+        // ---------- CONTACT FORM (sends the enquiry to your email via Web3Forms) ----------
+        // 1) Go to https://web3forms.com, enter YOUR email, and they email you an access key.
+        // 2) Paste that key below. Enquiries then arrive straight in your inbox.
+        const WEB3FORMS_ACCESS_KEY = 'f44becde-ac77-4774-bf28-0f01db5d4e75';
+
+        const contactForm = document.getElementById('contact-form');
+        const contactSubmit = document.getElementById('contact-submit');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (WEB3FORMS_ACCESS_KEY === 'YOUR_ACCESS_KEY_HERE') {
+                showToast('Contact form is not connected yet. Please add the access key.', true);
+                return;
+            }
+
+            const data = Object.fromEntries(new FormData(contactForm).entries());
+            data.access_key = WEB3FORMS_ACCESS_KEY;
+            data.subject = `New portfolio enquiry: ${data.inquiry_type} (from ${data.name})`;
+            data.from_name = 'Portfolio Website';
+
+            const originalHTML = contactSubmit.innerHTML;
+            contactSubmit.disabled = true;
+            contactSubmit.textContent = 'Sending...';
+
+            try {
+                const res = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+
+                if (result.success) {
+                    contactForm.reset();
+                    showToast('Thank you! Your enquiry has been sent. I will reply soon.');
+                } else {
+                    showToast('Something went wrong. Please try again.', true);
+                }
+            } catch (err) {
+                showToast('Network error. Please check your connection and try again.', true);
+            } finally {
+                contactSubmit.disabled = false;
+                contactSubmit.innerHTML = originalHTML;
+                lucide.createIcons();
+            }
+        });
 
         window.onload = function () {
             lucide.createIcons();
