@@ -412,8 +412,8 @@
                 },
                 stills: [
                     "img/Stills/BODs1.jpeg",
-                    "img/Stills/BODs5.jpeg",
-                    "img/Stills/BODs4.jpg"
+                    "img/Stills/BODs2.jpeg",
+                    "img/Stills/BODs3.jpg"
                 ]
             },
             {
@@ -507,9 +507,9 @@
                     aspect: "4:3"
                 },
                 stills: [
-                    "img/Stills/BODs1.jpeg",
-                    "img/Stills/BODs5.jpeg",
-                    "img/Stills/BODs4.jpg"
+                    "img/Stills/BODs.jpeg",
+                    "img/Stills/BODs.jpeg",
+                    "img/Stills/BODs.jpg"
                 ]
             },
             {
@@ -549,7 +549,7 @@
                 description: "",
                 specs: {
                     camera: "Sony A6600",
-                    lens: "Sony 50mm F1.8 FE | Tamron 17-35mm F2.8",
+                    lens: "Sony 50mm F1.8 FE",
                     aspect: "4:3"
                 },
                 stills: [
@@ -574,8 +574,8 @@
                     "img/Arsha1/Ar5.jpeg"
                 ],
                 runtime: "Photo Series",
-                year: "2026",
-                logline: "A high-contrast photo series.",
+                year: "2025",
+                logline: "Kodak Film Look photo series",
                 description: "",
                 specs: {
                     camera: " Sony A6600",
@@ -584,7 +584,76 @@
                 },
                 stills: []
             },
+            {
+                id: 9,
+                title: "Chandra from DC reimagined",
+                category: ["Reels"],
+                thumbnail: "img/Reel/R3.jpg",
+                // FIX: must be an /embed/ URL, not youtu.be or watch?v=
+                videoUrl: "https://player.vimeo.com/video/1242359107",
+
+                runtime: "30 sec",
+                year: "2026",
+                logline: "Chandra from DC reimagined",
+                description: "",
+                specs: {
+                    camera: "Sony A6600",
+                    lens: "Sony 50mm F1.8 FE",
+                    aspect: "2:35:1"
+                },
+                stills: [
+                    "img/Stills/BODs1.jpeg",
+                    "img/Stills/BODs5.jpeg",
+                    "img/Stills/BODs4.jpg"
+                ]
+            },
+            {
+                id: 9,
+                title: "Lokah Recreation",
+                category: ["Reels"],
+                thumbnail: "img/Reel/R4.jpg",
+                // FIX: must be an /embed/ URL, not youtu.be or watch?v=
+                videoUrl: "https://player.vimeo.com/video/1242365884",
+
+                runtime: "31 sec",
+                year: "2025",
+                logline: "Tried to Recreate the Lokah World",
+                description: "",
+                specs: {
+                    camera: "Sony A6600",
+                    lens: "Sony 50mm F1.8 FE",
+                    aspect: "2:35:1"
+                },
+                stills: [
+                    "img/Stills/BODs1.jpeg",
+                    "img/Stills/BODs5.jpeg",
+                    "img/Stills/BODs4.jpg"
+                ]
+            },
             
+            {
+                id: 9,
+                title: "Saree Reel for Mayura Designs",
+                category: ["Reels"],
+                thumbnail: "img/Reel/R5.jpg",
+                // FIX: must be an /embed/ URL, not youtu.be or watch?v=
+                videoUrl: "https://player.vimeo.com/video/1242369371",
+
+                runtime: "35 sec",
+                year: "2025",
+                logline: "Saree Reel for Mayura Designs",
+                description: "",
+                specs: {
+                    camera: "Sony A6600",
+                    lens: "Sony 50mm F1.8 FE",
+                    aspect: "2:35:1"
+                },
+                stills: [
+                    "img/Stills/BODs1.jpeg",
+                    "img/Stills/BODs5.jpeg",
+                    "img/Stills/BODs4.jpg"
+                ]
+            },
             // {
             //     id: 4,
             //     title: "The Solitary Artisan",
@@ -851,6 +920,16 @@
             if (e.key === 'ArrowRight') goToSlide(carouselIndex + 1);
         });
 
+        // Turns any Vimeo / YouTube link into a proper embeddable player URL
+        function toEmbedUrl(url) {
+            if (!url) return url;
+            let m = url.match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/([a-z0-9]+))?/i);
+            if (m) return `https://player.vimeo.com/video/${m[1]}` + (m[2] ? `?h=${m[2]}` : '');
+            m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/))([\w-]{11})/);
+            if (m) return `https://www.youtube.com/embed/${m[1]}`;
+            return url;
+        }
+
         function openModal(project) {
             const playerContainer = document.getElementById('modal-player-container');
 
@@ -871,9 +950,10 @@
                 initCarousel(project.photos.length);
             } else if (project.videoUrl) {
                 // FIX: use & if the URL already contains a ?
-                const sep = project.videoUrl.includes('?') ? '&' : '?';
+                const embedUrl = toEmbedUrl(project.videoUrl);
+                const sep = embedUrl.includes('?') ? '&' : '?';
                 playerContainer.innerHTML = `
-                    <iframe src="${project.videoUrl}${sep}autoplay=1" title="${project.title}" class="w-full border-0 ${isReel ? 'h-full' : 'aspect-video max-h-full md:aspect-auto md:h-full'}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="${embedUrl}${sep}autoplay=1" title="${project.title}" class="w-full border-0 ${isReel ? 'h-full' : 'aspect-video max-h-full md:aspect-auto md:h-full'}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 `;
             } else {
                 playerContainer.innerHTML = `
@@ -884,11 +964,12 @@
             document.getElementById('modal-title').textContent = project.title;
             document.getElementById('modal-year').textContent = `RELEASE: ${project.year}`;
             document.getElementById('modal-runtime').textContent = `RUN TIME: ${project.runtime}`;
-            document.getElementById('modal-description').textContent = project.description;
+            document.getElementById('modal-description').textContent = project.description || project.logline || '';
+            const specs = project.specs || {};
 
-            document.getElementById('spec-camera').textContent = project.specs.camera;
-            document.getElementById('spec-lens').textContent = project.specs.lens;
-            document.getElementById('spec-aspect').textContent = project.specs.aspect;
+            document.getElementById('spec-camera').textContent = specs.camera || '—';
+            document.getElementById('spec-lens').textContent = specs.lens || '—';
+            document.getElementById('spec-aspect').textContent = specs.aspect || '—';
 
             document.getElementById('modal-tags').innerHTML = project.category.map(c =>
                 `<span class="px-2 py-0.5 text-[10px] sm:px-2.5 sm:py-1 sm:text-xs font-semibold rounded bg-cinema-accent/20 text-cinema-accent border border-cinema-accent/30">${c}</span>`
@@ -913,7 +994,7 @@
             } else {
                 stillsSection.style.display = 'block';
                 stillsContainer.innerHTML = project.stills.map(still => `
-                    <img src="${still}" alt="Production still" class="rounded-lg object-cover w-full aspect-video border border-cinema-border opacity-80 hover:opacity-100 transition-opacity">
+                    <img src="${still}" alt="Production still" class="still-thumb cursor-zoom-in rounded-lg object-cover w-full aspect-video border border-cinema-border opacity-80 hover:opacity-100 transition-opacity">
                 `).join('');
             }
 
@@ -929,6 +1010,39 @@
             document.getElementById('modal-player-container').innerHTML = '';
             document.body.style.overflow = 'auto';
         }
+
+        // PRODUCTION STILLS LIGHTBOX
+        const stillsLightbox = document.createElement('div');
+        stillsLightbox.id = 'stills-lightbox';
+        stillsLightbox.className = 'fixed inset-0 z-[100] hidden items-center justify-center bg-black/95 p-4 cursor-zoom-out';
+        stillsLightbox.innerHTML = `
+            <button type="button" id="stills-close" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/70 border border-cinema-border text-white text-xl hover:bg-cinema-accent hover:text-black transition-all" aria-label="Close image">&times;</button>
+            <img id="stills-lightbox-img" src="" alt="Production still" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">`;
+        document.body.appendChild(stillsLightbox);
+        const stillsLightboxImg = stillsLightbox.querySelector('#stills-lightbox-img');
+
+        function openStill(src) {
+            stillsLightboxImg.src = src;
+            stillsLightbox.classList.remove('hidden');
+            stillsLightbox.classList.add('flex');
+        }
+        function closeStill() {
+            stillsLightbox.classList.add('hidden');
+            stillsLightbox.classList.remove('flex');
+            stillsLightboxImg.src = '';
+        }
+        document.getElementById('modal-stills').addEventListener('click', (e) => {
+            const img = e.target.closest('.still-thumb');
+            if (img) openStill(img.src);
+        });
+        stillsLightbox.addEventListener('click', closeStill);
+        // Escape closes only the still first, not the project popup behind it
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !stillsLightbox.classList.contains('hidden')) {
+                e.stopImmediatePropagation();
+                closeStill();
+            }
+        }, true);
 
         modalCloseBtn.addEventListener('click', closeModal);
         modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
